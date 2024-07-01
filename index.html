@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,15 +13,37 @@
             padding: 0;
             overflow-x: hidden;
             background-image: url('/Jo.jpg');
-            
+            color: #fff;
+            cursor: none;
         }
+
+
+.trail {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 0, 150, 1), rgba(255, 0, 150, 0.6), rgba(255, 0, 150, 0));
+  pointer-events: none;
+  animation: fade 1s forwards, move 1s ease-out forwards;
+}
+
+@keyframes fade {
+  to {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes move {
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
 
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px
             background: transparent;
-            border-radius: 30px;
         }
 
         /* Navigation */
@@ -84,7 +106,6 @@
             backdrop-filter: blur(10px);
             padding: 80px 0;
             text-align: center;
-            color: #fff;
         }
 
         .features h2 {
@@ -119,13 +140,11 @@
             backdrop-filter: blur(10px);
             padding: 80px 0;
             text-align: center;
-color: #fff;
         }
 
         .start-using h2 {
             font-size: 2.5rem;
             margin-bottom: 40px;
-color: #fff;
         }
 
         .start-using .feature {
@@ -147,7 +166,6 @@ color: #fff;
 
         .start-using .feature p {
             font-size: 1.1rem;
-color: #fff;
         }
 
         /* Scroll Animation */
@@ -161,6 +179,17 @@ color: #fff;
             opacity: 1;
             transform: translateY(0);
         }
+
+     
+     
+     
+     
+     
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -216,13 +245,13 @@ color: #fff;
     <section id="how-it-works" class="features">
         <div class="container">
             <h2>How does it work?</h2>
-            <div class="feature slide-in">
+            <div class="feature fade-in">
                 <p>With Tonkeeper Battery you can receive tokens (stablecoins, NFTs etc.) and make payments with a token — without going to an exchange to buy coins to cover blockchain fees. Tonkeeper Battery pays your fees for you, automatically.</p>
             </div>
-            <div class="feature slide-in">
+            <div class="feature fade-in">
                 <p>You can charge the battery with one tap using in-app purchases, or with TON or stablecoins. Send a few dollars worth of stablecoins or TON to a special address: battery.ton and it will automatically apply charges to your account.</p>
             </div>
-            <div class="feature slide-in">
+            <div class="feature fade-in">
                 <p>Tonkeeper Battery is denominated in charges, each charge covers the fee of a simple TON transfer transaction. More complex transactions may consume 5, 10 or more charges.</p>
             </div>
         </div>
@@ -239,9 +268,52 @@ color: #fff;
             </div>
         </div>
     </section>
-
+<div class="trail"></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Scroll Animation
+        function onScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            const scrollY = window.scrollY + window.innerHeight;
+            elements.forEach(element => {
+                if (scrollY > element.offsetTop + 100) {
+                    element.classList.add('visible');
+                }
+            });
+        }
 
+        window.addEventListener('scroll', onScroll);
+        document.addEventListener('DOMContentLoaded', onScroll);
+        
+        
+        
+        
+        
+        
+document.addEventListener('mousemove', (event) => {
+  const trail = document.createElement('div');
+  trail.classList.add('trail');
+  document.body.appendChild(trail);
+
+  const size = Math.random() * 15 + 10; // Random size between 10 and 25
+  trail.style.width = `${size}px`;
+  trail.style.height = `${size}px`;
+  trail.style.left = `${event.pageX}px`;
+  trail.style.top = `${event.pageY}px`;
+
+  // Colorful radial gradient
+  const r = Math.floor(Math.random() * 255);
+  const g = Math.floor(Math.random() * 255);
+  const b = Math.floor(Math.random() * 255);
+  trail.style.background = `radial-gradient(circle, rgba(${r},${g},${b},1), rgba(${r},${g},${b},0.6), rgba(${r},${g},${b},0))`;
+
+  setTimeout(() => {
+    trail.remove();
+  }, 1000); // Adjust time to match the CSS animation duration
+});
+
+
+    </script>
     
 </body>
-</html>
+                            </html>
